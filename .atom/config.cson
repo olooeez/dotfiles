@@ -1,0 +1,26 @@
+"*":
+  core:
+	automaticallyUpdate: false
+	telemetryConsent: "no"
+	themes: [
+	  "one-dark-ui"
+	  "dracula-syntax"
+	]
+  editor:
+	fontSize: 15
+	invisibles: {}
+	scrollPastEnd: true
+	showIndentGuide: true
+	showInvisibles: true
+	softTabs: false
+	tabLength: 4
+	tabType: "hard"
+  "file-icons":
+	coloured: false
+  minimap: {}
+  "spell-check":
+	locales: [
+	  "pt_BR"
+	]
+  welcome:
+	showOnStartup: false

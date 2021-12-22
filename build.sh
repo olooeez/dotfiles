@@ -82,6 +82,22 @@ function _ubuntu_packages {
 	done
 }
 
+# Function to install all my dotfiles
+function _dotfiles {
+	local dotfiles_atom='.atom'
+	local dotfiles_bash='.bashrc'
+	local dotfiles_git='.config/git/config'
+
+	eval "mkdir -p ${HOME}/${dotfiles_atom} && cp .atom/* ${HOME}/${dotfiles_atom}"
+	echo "${CATEGORY_SPACES}-installed the ${dotfiles_atom} config"
+
+	eval "cp ${dotfiles_bash} ${HOME}"
+	echo "${CATEGORY_SPACES}-installed the ${dotfiles_bash} config"
+
+	eval "mkdir -p ${HOME}/.config/git && cp ${dotfiles_git} ${HOME}/.config/git"
+	echo "${CATEGORY_SPACES}-installed the ${dotfiles_git} config"
+}
+
 # Is root?
 if [ "$EUID" -ne 0 ]
 then
@@ -96,3 +112,5 @@ echo "Installing papirus-icon-theme"
 _papirus_icon_theme
 echo "Installing atom"
 _atom
+echo "Installing dotfiles"
+_dotfiles
