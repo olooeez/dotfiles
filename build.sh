@@ -1,101 +1,64 @@
 #!/usr/bin/env bash
 
+# Colors
+declare -gr BOLD="\033[1m"
+declare -gr GREEN="\033[32m"
+declare -gr YELLOW="\033[33m"
+declare -gr RESET="\033[0m"
+
 # Global variables
-declare -gr CATEGORY_SPACES="  "
+declare -gr USER_HOME=$(eval "echo ~$SUDO_USER")
+declare -gr USER_NAME=$SUDO_USER
 
-# Function to install atom and some plugins
-function _atom {
-	local atom_latest="https://api.github.com/repos/atom/atom/releases/latest"
-	local atom_download
-
-	if which atom > /dev/null
-	then
-		echo "${CATEGORY_SPACES}-atom installed"
-		return 0
-	fi
-
-	echo "${CATEGORY_SPACES}-Getting the latest atom release"
-	atom_download=$(curl -s ${atom_latest} | jq -r ".assets[].browser_download_url" | grep ".deb")
-
-	echo "${CATEGORY_SPACES}-Downloading atom"
-	eval "wget -qq -O atom.deb $atom_download"
-
-	echo "${CATEGORY_SPACES}-Installing atom"
-	eval "dpkg -i atom.deb && apt install -f"
-
-	echo "${CATEGORY_SPACES}-atom installed"
-
-	echo "${CATEGORY_SPACES}-Installing atom plugins"
-
-	local atom_plugins=(
-		dracula-syntax
-		file-icons
-		minimap
-		platformio-ide
-	)
-
-	for i in "${atom_plugins[@]}"
-	do
-		eval "apm install $i > /dev/null"
-		echo "${CATEGORY_SPACES}-$i installed"
-	done
-}
-
-# Function to install papirus-icon-theme
+# Install papirus-icon-theme
 function _papirus_icon_theme {
-	if [ -d "/usr/share/icons/Papirus" ]
+	if [ -d /usr/share/icons/Papirus ]
 	then
-		echo "${CATEGORY_SPACES}-papirus-icon-theme installed"
-		return 0
+		echo -e "${YELLOW}-papirus-icon-theme already installed${RESET}"
+	else
+		eval 'wget -qO- https://git.io/papirus-icon-theme-install | sh > /dev/null'
+		echo -e "${YELLOW}-papirus-icon-theme installed${RESET}"
 	fi
-
-	echo "${CATEGORY_SPACES}-Adding the papirus repository"
-	eval "add-apt-repository ppa:papirus/papirus > /dev/null"
-
-	echo "${CATEGORY_SPACES}-Updating the repositorys"
-	eval "apt-get update > /dev/null"
-
-	echo "${CATEGORY_SPACES}-Installing papirus icon theme"
-	eval "apt-get install papirus-icon-theme"
-
-	echo "${CATEGORY_SPACES}-papirus-icon-theme installed"
 }
 
-# Function to install some accessible packages in ubuntu mate
-function _ubuntu_packages {
+# Install some packages on debian
+function _debian_packages {
 	local packages_install=(
 		build-essential
-		ssh
 		golang
-		python3-pip
 		pass
 		git
+		openjdk-17-jdk
+		vim
 		gpg
+		cmake
 		openssh-client
-		htop
 	)
 
 	for i in "${packages_install[@]}"
 	do
 		eval "apt-get install $i -y > /dev/null"
-		echo "${CATEGORY_SPACES}-${i} installed"
+		echo -e "${YELLOW}-${i} installed${RESET}"
 	done
 }
 
-# Function to install all my dotfiles
+# Install all my dotfiles
 function _dotfiles {
-	local dotfiles_atom='.atom'
 	local dotfiles_bash='.bashrc'
 	local dotfiles_git='.config/git/config'
+	local dotfiles_vim='.vimrc'
 
-	eval "mkdir -p ${HOME}/${dotfiles_atom} && cp .atom/* ${HOME}/${dotfiles_atom}"
-	echo "${CATEGORY_SPACES}-installed the ${dotfiles_atom} config"
+	eval "cp ${dotfiles_bash} ${USER_HOME}"
+	echo -e "${YELLOW}-installed the ${dotfiles_bash} config${RESET}"
+	eval "chown ${USER_NAME}:${USER_NAME} ${USER_HOME}/${dotfiles_bash}"
 
-	eval "cp ${dotfiles_bash} ${HOME}"
-	echo "${CATEGORY_SPACES}-installed the ${dotfiles_bash} config"
+	eval "mkdir -p ${USER_HOME}/.config/git && cp ${dotfiles_git} ${USER_HOME}/.config/git"
+	echo -e "${YELLOW}-installed the ${dotfiles_git} config${RESET}"
+	eval "chown ${USER_NAME}:${USER_NAME} ${USER_HOME}/${dotfiles_git}"
 
-	eval "mkdir -p ${HOME}/.config/git && cp ${dotfiles_git} ${HOME}/.config/git"
-	echo "${CATEGORY_SPACES}-installed the ${dotfiles_git} config"
+	eval "cp ${dotfiles_vim} ${USER_HOME}"
+	echo -e "${YELLOW}-installed the ${dotfiles_vim} config${RESET}"
+	eval "chown ${USER_NAME}:${USER_NAME} ${USER_HOME}/${dotfiles_git}"
 }
 
 # Is root?
@@ -106,11 +69,9 @@ then
 fi
 
 # Main
-echo "Installing ubuntu packages"
-_ubuntu_packages
-echo "Installing papirus-icon-theme"
+echo -e "${GREEN}Installing some packages${RESET}"
+_debian_packages
+echo -e "${GREEN}Installing papirus-icon-theme${RESET}"
 _papirus_icon_theme
-echo "Installing atom"
-_atom
-echo "Installing dotfiles"
+echo -e "${GREEN}Installing dotfiles${RESET}"
 _dotfiles
