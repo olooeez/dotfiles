@@ -2,20 +2,23 @@
 
 # system-build
 
-A simple script to build my setup (installs apps i use and my custom config files) on Ubuntu MATE
+A simple script to build my setup (installs apps i use and my custom config files) on Debian GNU/Linux
 
-## Dependencies
+## Prerequisites
 
-* __curl__ ≥ 7.68.0
-* __jq__ ≥ 1.6
+* git >= 2.25.1
+* bash >= 5.0.17
 
-## Usage
+## How to use?
 
-1. Clone this repository with the command below:
+Clone this repository with the command below:
+
 ```
 git clone https://github.com/lurevar/system-build.git
 ```
-2. Enter the directory and run _build.sh_ with root privileges:
+
+Enter the directory and run _build.sh_ with root privileges:
 ```
-cd system-build && sudo bash build.sh
+cd system-build
+sudo bash build.sh
 ```
