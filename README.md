@@ -1,24 +1,23 @@
-[![CodeFactor](https://www.codefactor.io/repository/github/lurevar/system-build/badge)](https://www.codefactor.io/repository/github/lurevar/system-build)
+# dotfiles
 
-# system-build
+A repository with my configuration files (dotfiles) using [GNU Stow](https://www.gnu.org/software/stow/)
 
-A simple script to build my setup (installs apps i use and my custom config files) on Debian GNU/Linux
+## Configs
 
-## Prerequisites
+* bash
+* vim
+* nano
 
-* git >= 2.25.1
-* bash >= 5.0.17
-
-## How to use?
+## Install
 
 Clone this repository with the command below:
 
 ```
-git clone https://github.com/lurevar/system-build.git
+git clone https://github.com/lureevar/dotfiles.git ~/.dotfiles
 ```
 
-Enter the directory and run _build.sh_ with root privileges:
+Enter the directory and use _GNU Stow_:
 ```
-cd system-build
-sudo bash build.sh
+cd ~/.dotfiles
+stow nano bash vim ...
 ```
