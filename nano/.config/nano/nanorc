@@ -1,0 +1,15 @@
+# Basic config
+set autoindent
+set linenumbers
+set mouse
+set multibuffer
+set tabsize 4
+
+# Colors
+set titlecolor brightyellow
+set statuscolor brightwhite,green
+set errorcolor brightwhite,red
+set selectedcolor brightwhite,magenta
+set numbercolor brightyellow
+set keycolor brightblue
+set functioncolor white
