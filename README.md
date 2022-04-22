@@ -7,6 +7,7 @@ A repository with my configuration files (dotfiles) using [GNU Stow](https://www
 * bash
 * vim
 * nano
+* tmux
 
 ## Install
 
