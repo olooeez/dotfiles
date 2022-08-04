@@ -44,9 +44,19 @@ fi
 export PS1
 
 # Use bash completions
-if [ -f /etc/bash_completion ] && ! shopt -oq posix
+if [ -f /etc/profile.d/bash_completion.sh ] && ! shopt -oq posix
 then
-	source /etc/bash_completion
+	source /etc/profile.d/bash_completion.sh
+fi
+
+if [ -d /usr/local/share/bash_completion.d/ ] && ! shopt -oq posix
+then
+	source /usr/local/share/bash_completion.d/*
+fi
+
+if [ -d /etc/bash_completion.d/ ] && ! shopt -oq posix
+then
+	source /etc/bash_completion.d/*
 fi
 
 # XDG support
@@ -55,6 +65,10 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass"
+
+# Golang stuff
+export GOPATH="$XDG_DATA_HOME/go"
+export PATH="$GOPATH/bin:$PATH"
 
 # Definition of some useful aliases
 alias ls='ls --color=auto'
@@ -65,3 +79,4 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias bat='batcat --theme "ansi-dark"'
+alias todo='todo.sh'
