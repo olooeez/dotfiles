@@ -4,7 +4,7 @@ export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME="robbyrussell"
 
-ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 CASE_SENSITIVE="true"
 
@@ -61,7 +61,11 @@ alias gs="git status"
 alias ga="git add"
 alias gb="git branch"
 alias gc="git commit"
+alias gp="git push"
 
 alias la="ls -A"
 alias ll="ls -lh"
 alias lla="ls -lhA"
+
+alias cl="clear"
+alias rs="reset"
