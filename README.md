@@ -4,7 +4,7 @@ A repository with my configuration files (dotfiles) using [GNU Stow](https://www
 
 ## Configs
 
-* bash
+* zsh
 * vim
 * nano
 * tmux
