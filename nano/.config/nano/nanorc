@@ -1,15 +1,95 @@
-# Basic config
+set afterends
+set atblanks
 set autoindent
+set backup
+set bookstyle
+set breaklonglines
+set casesensitive
+set constantshow
+set cutfromcursor
+set historylog
+set jumpyscrolling
 set linenumbers
+set locking
+set magic
 set mouse
 set multibuffer
+set noconvert
+set positionlog
+set regexp
+set showcursor
+set smarthome
+set softwrap
+set tabstospaces
+set trimblanks
+set multibuffer
+
+set fill -8
 set tabsize 4
 
-# Colors
-set titlecolor brightyellow
-set statuscolor brightwhite,green
-set errorcolor brightwhite,red
-set selectedcolor brightwhite,magenta
-set numbercolor brightyellow
-set keycolor brightblue
+set brackets ""')>]}"
+set matchbrackets "(<[{)>]}"
+set quotestr "^([ 	]*([!#%:;>|}]|//))+"
+
+include "/usr/share/nano/*.nanorc"
+set backupdir "/home/luiz/Documentos/nano-backup"
+
+set speller "aspell -x -c"
+
+set titlecolor white
+set promptcolor white
+set statuscolor white
+set errorcolor red
+set spotlightcolor white,yellow
+set selectedcolor white,magenta
+set numbercolor white
+set keycolor bold,green
 set functioncolor white
+
+extendsyntax python tabgives "    "
+extendsyntax makefile tabgives "	"
+extendsyntax ruby tabgives "  "
+
+bind ^Z suspend main
+bind ^H chopwordleft main
+
+bind M-K comment main
+
+unbind M-J main
+unbind M-T main
+
+" mainh-M-U "|sed 's/.*/\U&/'
+" mainh-M-L "|sed 's/.*/\L&/'
+" mainh-M-T "|xsel -ib
+
+bind ^X cut main
+bind ^C copy main
+bind ^V paste all
+bind ^Q exit all
+bind ^S savefile main
+bind ^W writeout main
+bind ^O insert main
+bind ^H help all
+bind ^H exit help
+bind ^F whereis all
+bind ^G findnext all
+bind ^B wherewas all
+bind ^D findprevious all
+bind ^R replace main
+bind ^Z undo main
+bind ^Y redo main
+
+unbind ^K main
+unbind ^U all
+unbind ^N main
+unbind ^Y all
+unbind M-J main
+unbind M-T main
+
+bind ^A mark main
+bind ^P location main
+bind ^T gotoline main
+bind ^T gotodir browser
+bind ^T cutrestoffile execute
+bind ^L linter execute
+bind ^E execute main
