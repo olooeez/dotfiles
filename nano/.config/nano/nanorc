@@ -1,7 +1,6 @@
 set afterends
 set atblanks
 set autoindent
-set backup
 set bookstyle
 set breaklonglines
 set casesensitive
@@ -11,7 +10,6 @@ set historylog
 set jumpyscrolling
 set linenumbers
 set locking
-set magic
 set mouse
 set multibuffer
 set noconvert
@@ -32,7 +30,6 @@ set matchbrackets "(<[{)>]}"
 set quotestr "^([ 	]*([!#%:;>|}]|//))+"
 
 include "/usr/share/nano/*.nanorc"
-set backupdir "/home/luiz/Documentos/nano-backup"
 
 set speller "aspell -x -c"
 
@@ -57,10 +54,6 @@ bind M-K comment main
 
 unbind M-J main
 unbind M-T main
-
-" mainh-M-U "|sed 's/.*/\U&/'
-" mainh-M-L "|sed 's/.*/\L&/'
-" mainh-M-T "|xsel -ib
 
 bind ^X cut main
 bind ^C copy main
