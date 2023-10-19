@@ -3,6 +3,7 @@ export ZSH="$HOME/.oh-my-zsh"
 export LANG="pt_BR.UTF-8"
 export ARCHFLAGS="-arch x86_64"
 export PATH="$HOME/go/bin:$PATH"
+export WALLPAPER_PATH="$HOME/Imagens/Wallpapers"
 
 zstyle ':omz:update' mode auto
 zstyle ':omz:update' frequency 13
